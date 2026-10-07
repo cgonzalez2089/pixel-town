@@ -14,6 +14,11 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
+      // `_name` marks a value as intentionally unused, e.g. when omitting a key via destructuring.
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
     },
   },
   { files: ['**/*.js'], ...tseslint.configs.disableTypeChecked },

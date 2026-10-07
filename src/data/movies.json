@@ -1,0 +1,69 @@
+[
+  {
+    "id": "heat-1995",
+    "title": "Heat",
+    "type": "movie",
+    "year": 1995,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/umSVjVdbVwtx5ryCA2QXL44Durm.jpg",
+    "description": "A meticulous LA crew of professional thieves and the obsessive detective hunting them circle each other toward one last job.",
+    "status": "rated",
+    "rating": 5,
+    "review": "Sample review, replace with your own: the downtown shootout still sets the bar, and the diner scene is two legends at their quietest best.",
+    "dateAdded": "2026-09-14"
+  },
+  {
+    "id": "spirited-away-2001",
+    "title": "Spirited Away",
+    "type": "movie",
+    "year": 2001,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/jUo8cNmU400WtZiJss45HNXlQ2e.jpg",
+    "description": "A ten-year-old girl wanders into a bathhouse for spirits and has to work there to free her parents and find her way home.",
+    "status": "rated",
+    "rating": 4.5,
+    "review": "Sample review, replace with your own: every frame feels hand-made, and it trusts kids to handle real strangeness.",
+    "dateAdded": "2026-09-20"
+  },
+  {
+    "id": "grand-budapest-hotel-2014",
+    "title": "The Grand Budapest Hotel",
+    "type": "movie",
+    "year": 2014,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
+    "description": "A legendary hotel concierge and his loyal lobby boy get caught up in a stolen painting and a fight over a family fortune.",
+    "status": "rated",
+    "rating": 4,
+    "review": "Sample review, replace with your own: a perfectly built dollhouse of a movie, funnier and sadder than it first lets on.",
+    "dateAdded": "2026-09-27"
+  },
+  {
+    "id": "parasite-2019",
+    "title": "Parasite",
+    "type": "movie",
+    "year": 2019,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "description": "A struggling family schemes its way into jobs with a wealthy household, until a secret in the basement upends everything.",
+    "status": "rated",
+    "rating": 5,
+    "dateAdded": "2026-10-01"
+  },
+  {
+    "id": "seven-samurai-1954",
+    "title": "Seven Samurai",
+    "type": "movie",
+    "year": 1954,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/lOMGc8bnSwQhS4XyE1S99uH8NXf.jpg",
+    "description": "A farming village hires seven masterless samurai to defend it from the bandits who raid it every harvest.",
+    "status": "wishlist",
+    "dateAdded": "2026-10-03"
+  },
+  {
+    "id": "perfect-days-2023",
+    "title": "Perfect Days",
+    "type": "movie",
+    "year": 2023,
+    "imageUrl": "https://image.tmdb.org/t/p/w342/tvUHVSTJV9ITON3oyHaWp7oaAc8.jpg",
+    "description": "A Tokyo public-toilet cleaner finds quiet joy in routine, cassette tapes, books and the trees he photographs every day.",
+    "status": "wishlist",
+    "dateAdded": "2026-10-05"
+  }
+]
