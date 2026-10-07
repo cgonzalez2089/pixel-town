@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #1b1b24;
+  color: #f2efe6;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+#game {
+  width: 100vw;
+  height: 100dvh;
+}
+
+#game canvas {
+  display: block;
+  image-rendering: pixelated;
+}
