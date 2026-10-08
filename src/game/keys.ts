@@ -3,6 +3,7 @@
 export const SCENES = {
   BOOT: 'boot',
   TOWN: 'town',
+  STORE_INTERIOR: 'store-interior',
 } as const;
 
 export const TEXTURES = {

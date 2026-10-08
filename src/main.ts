@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import './style.css';
 import { BootScene } from './game/scenes/BootScene';
+import { StoreInteriorScene } from './game/scenes/StoreInteriorScene';
 import { TownScene } from './game/scenes/TownScene';
 
 new Phaser.Game({
@@ -11,5 +12,5 @@ new Phaser.Game({
   roundPixels: true,
   scale: { mode: Phaser.Scale.RESIZE, width: '100%', height: '100%' },
   physics: { default: 'arcade' },
-  scene: [BootScene, TownScene],
+  scene: [BootScene, TownScene, StoreInteriorScene],
 });

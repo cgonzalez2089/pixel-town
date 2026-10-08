@@ -3,6 +3,8 @@ import { PLAYER_SPEED } from '../../config/game';
 import { FACINGS, playerFrame, WALK_FRAMES } from '../art/placeholderArt';
 import { facingFor, normalizeDirection, type Facing, type Vec2 } from '../input/direction';
 import { TEXTURES } from '../keys';
+import { worldToTile } from '../maps/coords';
+import type { TilePoint } from '../maps/types';
 
 const walkAnimation = (facing: Facing) => `player-walk-${facing}`;
 
@@ -36,17 +38,34 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
   }
 
+  /** The tile under the player's feet (the centre of the collision body). */
+  feetTile(): TilePoint {
+    const { x, y } = this.body?.center ?? this;
+    return worldToTile(x, y);
+  }
+
+  /** Turns to face `facing` and stands still. */
+  face(facing: Facing): void {
+    this.facing = facing;
+    this.stand();
+  }
+
   /** Moves in `direction` (each axis -1..1), or stands still for a zero vector. */
   move(direction: Vec2): void {
     const { x, y } = normalizeDirection(direction);
     this.setVelocity(x * PLAYER_SPEED, y * PLAYER_SPEED);
 
     if (x === 0 && y === 0) {
-      this.anims.stop();
-      this.setFrame(playerFrame(this.facing, 0));
+      this.stand();
       return;
     }
     this.facing = facingFor({ x, y }, this.facing);
     this.anims.play(walkAnimation(this.facing), true);
+  }
+
+  private stand(): void {
+    this.setVelocity(0, 0);
+    this.anims.stop();
+    this.setFrame(playerFrame(this.facing, 0));
   }
 }

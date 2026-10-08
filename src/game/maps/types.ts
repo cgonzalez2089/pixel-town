@@ -6,6 +6,12 @@ export interface TilePoint {
   y: number;
 }
 
+/** A rectangle measured in tiles; `x`/`y` is the top-left tile. */
+export interface TileRect extends TilePoint {
+  width: number;
+  height: number;
+}
+
 /**
  * Everything a scene needs to build a map. Today it comes from ASCII art in
  * code; a Tiled JSON importer can produce the same shape later.

@@ -82,6 +82,46 @@ const TILE_PAINTERS: Record<TileId, (paint: Paint) => void> = {
     paint('#6b4224', 2, 3, 3, 11);
     paint('#6b4224', 11, 3, 3, 11);
   },
+  [Tile.Roof]: (paint) => {
+    paint('#9c4436', 0, 0, TILE_SIZE, TILE_SIZE);
+    for (let y = 3; y < TILE_SIZE; y += 4) paint('#7d3328', 0, y, TILE_SIZE, 1);
+  },
+  [Tile.Wall]: (paint) => {
+    paint('#e3d3b1', 0, 0, TILE_SIZE, TILE_SIZE);
+    paint('#c9b896', 0, 7, TILE_SIZE, 1);
+    paint('#a8977a', 0, 15, TILE_SIZE, 1);
+  },
+  [Tile.Door]: (paint) => {
+    paint('#e3d3b1', 0, 0, TILE_SIZE, TILE_SIZE);
+    paint('#3d2716', 2, 1, 12, 15);
+    paint('#6b4528', 3, 2, 10, 14);
+    paint('#f2d13c', 10, 9, 2, 2);
+  },
+  [Tile.Floor]: (paint) => {
+    paint('#b98d5e', 0, 0, TILE_SIZE, TILE_SIZE);
+    paint('#a27a4f', 0, 7, TILE_SIZE, 1);
+    paint('#a27a4f', 0, 15, TILE_SIZE, 1);
+    paint('#a27a4f', 5, 0, 1, 7);
+    paint('#a27a4f', 11, 8, 1, 7);
+  },
+  [Tile.InnerWall]: (paint) => {
+    paint('#4b405e', 0, 0, TILE_SIZE, TILE_SIZE);
+    paint('#5d5174', 0, 0, TILE_SIZE, 3);
+  },
+  [Tile.Shelf]: (paint) => {
+    paint('#5a3a22', 0, 0, TILE_SIZE, TILE_SIZE);
+    for (const shelfY of [1, 8]) {
+      paint('#2a1b10', 1, shelfY, 14, 6);
+      ['#d9573b', '#3a79c9', '#f2d13c', '#5b9a4b', '#e8e2d0', '#9c4436'].forEach((color, i) => {
+        paint(color, 2 + i * 2, shelfY + 1 + (i % 2), 2, 5 - (i % 2));
+      });
+    }
+  },
+  [Tile.Exit]: (paint) => {
+    paint('#b98d5e', 0, 0, TILE_SIZE, TILE_SIZE);
+    paint('#7a2f2f', 1, 3, 14, 10);
+    paint('#a84a4a', 3, 5, 10, 6);
+  },
 };
 
 function createTileset(scene: Phaser.Scene): void {

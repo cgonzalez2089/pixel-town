@@ -1,4 +1,6 @@
+import { STORES } from '../../config/stores';
 import { parseAsciiMap } from './asciiMap';
+import { buildTownMap, validateStores } from './storeLayout';
 import { Tile, type TileId } from './tiles';
 import type { MapDefinition } from './types';
 
@@ -11,7 +13,7 @@ const LEGEND: Record<string, TileId> = {
   F: Tile.Fence,
 };
 
-// 30×20 tiles. The open area around (11–17, 3–7) is reserved for the movie store.
+// 30×20 tiles of terrain. Store buildings are stamped on top from config/stores.ts.
 const ROWS = [
   'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
   'FTT......................TTTTF',
@@ -35,7 +37,14 @@ const ROWS = [
   'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
 ];
 
-export const TOWN_MAP: MapDefinition = {
+export const TOWN_TERRAIN: MapDefinition = {
   tiles: parseAsciiMap(ROWS, LEGEND),
   spawn: { x: 14, y: 10 },
 };
+
+const storeProblems = validateStores(STORES, TOWN_TERRAIN);
+if (storeProblems.length > 0) {
+  throw new Error(`Invalid store config:\n  - ${storeProblems.join('\n  - ')}`);
+}
+
+export const TOWN_MAP: MapDefinition = buildTownMap(TOWN_TERRAIN, STORES);
