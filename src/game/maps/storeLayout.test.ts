@@ -6,6 +6,7 @@ import {
   buildTownMap,
   interiorExit,
   outsideDoor,
+  shelfInReach,
   validateStores,
 } from './storeLayout';
 import { isSolid, Tile } from './tiles';
@@ -143,5 +144,25 @@ describe('STORES config', () => {
       const outside = outsideDoor(store);
       expect(isSolid(TOWN_MAP.tiles[outside.y]?.[outside.x])).toBe(false);
     }
+  });
+});
+
+describe('shelfInReach', () => {
+  const shelves = [
+    { id: 'a', label: 'A', status: 'rated' as const, x: 2, y: 1, width: 3 },
+    { id: 'b', label: 'B', status: 'wishlist' as const, x: 7, y: 1, width: 2 },
+  ];
+
+  it('finds the shelf in front of the player, up to two rows away', () => {
+    expect(shelfInReach({ x: 2, y: 2 }, shelves)?.id).toBe('a');
+    expect(shelfInReach({ x: 4, y: 3 }, shelves)?.id).toBe('a');
+    expect(shelfInReach({ x: 8, y: 2 }, shelves)?.id).toBe('b');
+  });
+
+  it('finds nothing beside, between, behind or too far from shelves', () => {
+    expect(shelfInReach({ x: 1, y: 2 }, shelves)).toBeUndefined();
+    expect(shelfInReach({ x: 5, y: 2 }, shelves)).toBeUndefined();
+    expect(shelfInReach({ x: 3, y: 4 }, shelves)).toBeUndefined();
+    expect(shelfInReach({ x: 3, y: 1 }, shelves)).toBeUndefined();
   });
 });

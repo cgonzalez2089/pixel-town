@@ -1,4 +1,4 @@
-import type { InteriorConfig, StoreConfig } from '../../config/stores';
+import type { InteriorConfig, ShelfConfig, StoreConfig } from '../../config/stores';
 import { isSolid, Tile, type TileId } from './tiles';
 import type { MapDefinition, TilePoint, TileRect } from './types';
 
@@ -37,6 +37,27 @@ export function outsideDoor(store: StoreConfig): TilePoint {
 /** The interior exit tile, centred in the bottom wall. */
 export function interiorExit({ width, height }: InteriorConfig): TilePoint {
   return { x: Math.floor(width / 2), y: height - 1 };
+}
+
+/**
+ * Rows in front of a shelf from which it can be used. Two, because the
+ * sprite's head is a tile above its feet: standing "at" the shelf visually
+ * can still leave the feet a row away.
+ */
+export const SHELF_REACH_ROWS = 2;
+
+/** The shelf the player can use from `feet`, if they stand in front of (below) one. */
+export function shelfInReach<S extends ShelfConfig>(
+  feet: TilePoint,
+  shelves: readonly S[],
+): S | undefined {
+  return shelves.find(
+    (shelf) =>
+      feet.y > shelf.y &&
+      feet.y <= shelf.y + SHELF_REACH_ROWS &&
+      feet.x >= shelf.x &&
+      feet.x < shelf.x + shelf.width,
+  );
 }
 
 /** Stamps each store's building and door onto a copy of the town terrain. */

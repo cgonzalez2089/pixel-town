@@ -1,16 +1,21 @@
-import Phaser from 'phaser';
 import './style.css';
-import { BootScene } from './game/scenes/BootScene';
-import { StoreInteriorScene } from './game/scenes/StoreInteriorScene';
-import { TownScene } from './game/scenes/TownScene';
+import './ui/styles.css';
+import { STORES } from './config/stores';
+import { loadCatalog } from './data/catalog';
+import { bus } from './events';
+import { createGame } from './game/createGame';
+import { getElement } from './ui/dom';
+import { renderFatalError } from './ui/errorScreen';
+import { mountShelfPanel } from './ui/ShelfPanel';
 
-new Phaser.Game({
-  type: Phaser.AUTO,
-  parent: 'game',
-  backgroundColor: '#1b1b24',
-  pixelArt: true,
-  roundPixels: true,
-  scale: { mode: Phaser.Scale.RESIZE, width: '100%', height: '100%' },
-  physics: { default: 'arcade' },
-  scene: [BootScene, TownScene, StoreInteriorScene],
-});
+const uiRoot = getElement('ui-root');
+
+try {
+  // Validate every store's data before anything is drawn, so bad JSON fails loudly.
+  const catalog = await loadCatalog(STORES);
+  mountShelfPanel(uiRoot, bus);
+  createGame(getElement('game'), catalog);
+} catch (error) {
+  console.error(error);
+  renderFatalError(uiRoot, error);
+}

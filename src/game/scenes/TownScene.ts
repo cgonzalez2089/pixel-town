@@ -59,7 +59,7 @@ export class TownScene extends Phaser.Scene {
     for (const { name, building, door } of STORES) {
       const signRow = building.y + building.height - BUILDING_WALL_ROWS;
       const { x, y } = tileToWorld({ x: door.x, y: signRow });
-      addSign(this, x, y, name);
+      addSign(this, x, y, name.toUpperCase());
     }
   }
 }
