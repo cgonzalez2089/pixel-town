@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { ZOOM } from '../../config/game';
+import { followWithCamera } from '../camera';
 import { Player } from '../entities/Player';
 import { InputController } from '../input/InputController';
 import { SCENES } from '../keys';
@@ -25,7 +25,7 @@ export class TownScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, width, height);
     this.physics.add.collider(this.player, layer);
 
-    this.cameras.main.setBounds(0, 0, width, height).setZoom(ZOOM).startFollow(this.player, true);
+    followWithCamera(this, this.player, width, height);
     this.controls = new InputController(this);
   }
 
